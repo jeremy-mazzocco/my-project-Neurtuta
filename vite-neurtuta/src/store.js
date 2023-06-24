@@ -8,6 +8,7 @@ export const store = reactive({
         weight: '',
         numberWorkouts: 0,
         caloriesBMI: 0,
+        caloriesWithWO: 0,
         calories: 0,
     }
 })

@@ -18,12 +18,16 @@ export default {
       } else if (store.myData.gender === 'female') {
         caloriesBMI = (10 * store.myData.weight + 6.25 * store.myData.height - 5 * store.myData.age - 161) * 1.1;
       };
+      // put in store caloriesBMI
+      store.myData.caloriesBMI = Math.round(caloriesBMI);
 
-      caloriesBMI = store.myData.caloriesBMI;
+      let caloriesWithWO = caloriesBMI * parseFloat(store.myData.numberWorkouts);
+      // put in store caloriesWithWO
+      store.myData.caloriesWithWO = Math.round(caloriesWithWO);
 
-      const caloriesWithWO = caloriesBMI * parseFloat(store.myData.numberWorkouts);
-      console.log(caloriesWithWO);
-      console.log(typeof caloriesWithWO);
+
+      console.log(caloriesBMI, caloriesWithWO);
+      // console.log(typeof caloriesWithWO);
 
 
       // console.log(store.myData.calories);
@@ -66,14 +70,18 @@ export default {
       </select>
       <br>
       <div>Select number of workout in a week</div>
-      <input v-model="store.myData.numberWorkouts" type="radio" id="one" value="1.1">
-      <label for="one">One</label>
+      <input v-model="store.myData.numberWorkouts" type="radio" id="one" value="1.2">
+      <label for="one">20%</label>
 
-      <input v-model="store.myData.numberWorkouts" type="radio" id="two" value="1.2">
-      <label for="two">Two</label>
+      <input v-model="store.myData.numberWorkouts" type="radio" id="two" value="1.3">
+      <label for="two">30%</label>
 
-      <input v-model="store.myData.numberWorkouts" type="radio" id="three" value="1.3">
-      <label for="three">Three</label>
+      <input v-model="store.myData.numberWorkouts" type="radio" id="three" value="1.4">
+      <label for="three">40%</label>
+
+      <input v-model="store.myData.numberWorkouts" type="radio" id="four" value="1.5">
+      <label for="four">50%</label>
+
       <br>
       <button @click="(newCaloriesCalculation)">
         Calculate
@@ -81,14 +89,14 @@ export default {
 
     </div>
     <div>
-      Your BMI is {{ store.myData.caloriesBMI }}
+      Your BMI is {{ store.myData.caloriesBMI }} Kcal
     </div>
     <div>
-      Your calories with workout {{ store.myData.calories }}
+      Your calories with workout {{ store.myData.caloriesWithWO }} Kcal
     </div>
 
     <button @click="(debugbutton)">
-      DEBUG
+      DEBUG BUTTON
     </button>
   </main>
 </template>
