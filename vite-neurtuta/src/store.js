@@ -6,9 +6,10 @@ export const store = reactive({
         height: '',
         age: '',
         weight: '',
-        numberWorkouts: 0,
         caloriesBMI: 0,
+        numberWorkouts: 0,
         caloriesWithWO: 0,
+        caloriesCut: 0,
         calories: 0,
     }
 })
