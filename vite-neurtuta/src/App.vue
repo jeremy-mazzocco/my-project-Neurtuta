@@ -32,8 +32,18 @@ export default {
       // p/week
       store.myData.caloriesWeek = store.myData.caloriesDay * 7;
 
-      // Calculate protein and fats
-      store.myData.massaMagra
+      // Calculate protein and fats grams
+      store.myData.proteinDay = Math.floor(store.myData.leanMass * store.myData.proteinKilo);
+      store.myData.fatsDay = Math.floor(store.myData.leanMass * store.myData.fatsKilo);
+
+      // Calculate protein and fats calories
+      store.myData.proteinDayCalories = store.myData.proteinDay * 4;
+      store.myData.fatsDayCalories = store.myData.fatsDay * 9;
+
+      // Calculate carbs grams and calories
+      store.myData.carboDayCalories = Math.floor(store.myData.caloriesDay - (store.myData.proteinDayCalories + store.myData.fatsDayCalories));
+      store.myData.carboDay = Math.floor(store.myData.carboDayCalories / 4);
+
     },
     debugbutton() {
       // console.log(typeof b);
@@ -75,7 +85,6 @@ export default {
   </header>
 
   <main>
-
     <!-- CALORIES -->
     <section class="you">
 
@@ -147,7 +156,6 @@ export default {
       </div>
     </section>
 
-
     <!-- CARBS, PROTEIN AND FATS -->
     <section class="you">
 
@@ -168,7 +176,6 @@ export default {
             <input v-model="store.myData.fatsKilo" type="text" id="fats">
           </div>
 
-
           <button @click="(newCaloriesCalculation)">
             Calculate
           </button>
@@ -178,13 +185,14 @@ export default {
       <!-- RIGHT BLOCK -->
       <div class="you-right">
         <div class="result">
-          You need {{ store.myData.caloriesBMI }} carbs per day
+          You have left {{ store.myData.carboDay }} gr of carbs per day, {{ store.myData.carboDayCalories }} kcal
+        </div>
+        <div></div>
+        <div>
+          You need {{ store.myData.proteinDay }} gr of protein per day, {{ store.myData.proteinDayCalories }} Kcal
         </div>
         <div>
-          You need {{ store.myData.caloriesDay }} protein per day
-        </div>
-        <div>
-          Your need {{ store.myData.caloriesWeek }} fats per day
+          Your need {{ store.myData.fatsDay }} gr of fats per day, {{ store.myData.fatsDayCalories }} Kcal
         </div>
       </div>
     </section>
