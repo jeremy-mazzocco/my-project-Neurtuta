@@ -27,11 +27,15 @@ export default {
 
       // Calculate caloriesCut
       let caloriesCutted = Number(store.myData.caloriesCut);
-      store.myData.calories = store.myData.caloriesWithWO * caloriesCutted;
+      // p/day
+      store.myData.caloriesDay = Math.floor(store.myData.caloriesWithWO * caloriesCutted);
+      // p/week
+      store.myData.caloriesWeek = store.myData.caloriesDay * 7;
 
+      // Calculate protein and fats
+      store.myData.massaMagra
     },
     debugbutton() {
-      console.log(b);
       // console.log(typeof b);
     }
   }
@@ -41,80 +45,150 @@ export default {
 </script>
 
 <template>
-  <h1>
-    Neurtuta
-  </h1>
-  <h4>
-    you're personal mesures
-  </h4>
+  <header>
+    <section>
+
+      <div class="logo">
+        <h1>
+          Neurtuta
+        </h1>
+        <h4>
+          you're personal mesures
+        </h4>
+      </div>
+
+      <nav>
+        <ul>
+          <a href="#">
+            <li>You</li>
+          </a>
+          <a href="#">
+            <li>Food</li>
+          </a>
+          <a href="#">
+            <li>Graph</li>
+          </a>
+        </ul>
+      </nav>
+
+    </section>
+  </header>
 
   <main>
-    <div class="mycalories-calculator">
 
-      <!-- weight, height, age -->
-      <label for="weight">Weight in kg</label>
-      <input v-model="store.myData.weight" type="text" id="weight">
-      <br>
-      <label for="height">Height in cm</label>
-      <input v-model="store.myData.height" type="text" id="height">
-      <br>
-      <label for="age">Age</label>
-      <input id="insert age" v-model="store.myData.age" type="text">
+    <!-- CALORIES -->
+    <section class="you">
 
-      <!-- Seleect gender -->
-      <br>
-      <select v-model="store.myData.gender" id="gender">
-        <option disabled value="">Select gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
+      <!-- LEFT BLOCK -->
+      <div class="you-left">
+        <div class="mycalories-calculator">
 
-      <!-- Select WO -->
-      <br>
-      <div>Select number of workout in a week</div>
-      <input v-model="store.myData.numberWorkouts" type="radio" id="one" value="1.2">
-      <label for="one">20%</label>
+          <div class="input-1">
+            <label for="weight">Weight in kg</label>
+            <input v-model="store.myData.weight" type="text" id="weight">
+          </div>
+          <div class="input-2">
+            <label for="height">Height in cm</label>
+            <input v-model="store.myData.height" type="text" id="height">
+          </div>
 
-      <input v-model="store.myData.numberWorkouts" type="radio" id="two" value="1.3">
-      <label for="two">30%</label>
+          <div class="input-3">
+            <label for="age">Age</label>
+            <input id="insert age" v-model="store.myData.age" type="text">
+          </div>
 
-      <input v-model="store.myData.numberWorkouts" type="radio" id="three" value="1.4">
-      <label for="three">40%</label>
+          <div class="input-4">
+            <select v-model="store.myData.gender" id="gender">
+              <option disabled value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
 
-      <input v-model="store.myData.numberWorkouts" type="radio" id="four" value="1.5">
-      <label for="four">50%</label>
+          <!-- Select increase -->
+          <div class="input-5">
+            <div>Select number of workout in a week</div>
+            <input v-model="store.myData.numberWorkouts" type="radio" id="one" value="1.2">
+            <label for="one">20%</label>
+            <input v-model="store.myData.numberWorkouts" type="radio" id="two" value="1.3">
+            <label for="two">30%</label>
+            <input v-model="store.myData.numberWorkouts" type="radio" id="three" value="1.4">
+            <label for="three">40%</label>
+            <input v-model="store.myData.numberWorkouts" type="radio" id="four" value="1.5">
+            <label for="four">50%</label>
+          </div>
 
-      <!-- Select cut -->
-      <br>
-      <div>Obiettivi dieta</div>
-      <input v-model="store.myData.caloriesCut" type="radio" id="deep-ipo" value="0.5">
-      <label for="deep-ipo">Deep-ipocaloric</label>
+          <div class="input-6">
+            <!-- Select cut -->
+            <div>Obiettivi dieta</div>
+            <input v-model="store.myData.caloriesCut" type="radio" id="deep-ipo" value="0.7">
+            <label for="deep-ipo">Deep-ipocaloric</label>
+            <input v-model="store.myData.caloriesCut" type="radio" id="ipo" value="0.8">
+            <label for="ipo">Ipocaloric</label>
+            <input v-model="store.myData.caloriesCut" type="radio" id="normo" value="1">
+            <label for="normo">Normo</label>
+            <input v-model="store.myData.caloriesCut" type="radio" id="bulk" value="1.2">
+            <label for="bulk">Bulk</label>
+          </div>
+        </div>
+      </div>
 
-      <input v-model="store.myData.caloriesCut" type="radio" id="ipo" value="0.2">
-      <label for="ipo">Ipocaloric</label>
+      <!-- RIGHT BLOCK -->
+      <div class="you-right">
+        <div class="result">
+          Your BMI is {{ store.myData.caloriesBMI }} Kcal
+        </div>
+        <div>
+          You need {{ store.myData.caloriesDay }} Kcal calories per day
+        </div>
+        <div>
+          Your need {{ store.myData.caloriesWeek }} Kcal calories per week
+        </div>
+      </div>
+    </section>
 
-      <input v-model="store.myData.caloriesCut" type="radio" id="normo" value="1">
-      <label for="normo">Normo</label>
 
-      <input v-model="store.myData.caloriesCut" type="radio" id="bulk" value="1.2">
-      <label for="bulk">Bulk</label>
+    <!-- CARBS, PROTEIN AND FATS -->
+    <section class="you">
 
-      <br>
-      <button @click="(newCaloriesCalculation)">
-        Calculate
-      </button>
+      <!-- LEFT BLOCK -->
+      <div class="you-left">
+        <div class="mymacro-calculator">
 
-    </div>
-    <br>
-    <div>
-      Your BMI is {{ store.myData.caloriesBMI }} Kcal
-    </div>
-    <br>
-    <div>
-      Your calories with workout {{ store.myData.calories }} Kcal
-    </div>
+          <div class="input-1">
+            <label for="massa-magra">Lean mass in kg</label>
+            <input v-model="store.myData.leanMass" type="text" id="massa-magra">
+          </div>
+          <div class="input-2">
+            <label for="protein">How many protein per kilo you want</label>
+            <input v-model="store.myData.proteinKilo" type="text" id="protein">
+          </div>
+          <div class="input-3">
+            <label for="fats">How many fat per kilo you want</label>
+            <input v-model="store.myData.fatsKilo" type="text" id="fats">
+          </div>
 
-    <br>
+
+          <button @click="(newCaloriesCalculation)">
+            Calculate
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT BLOCK -->
+      <div class="you-right">
+        <div class="result">
+          You need {{ store.myData.caloriesBMI }} carbs per day
+        </div>
+        <div>
+          You need {{ store.myData.caloriesDay }} protein per day
+        </div>
+        <div>
+          Your need {{ store.myData.caloriesWeek }} fats per day
+        </div>
+      </div>
+    </section>
+
     <button @click="(debugbutton)">
       DEBUG BUTTON
     </button>
@@ -124,7 +198,52 @@ export default {
 <style lang="scss">
 @use './components/general.scss' as*;
 
-h1 {
-  text-align: center;
+header {
+  height: 100px;
+  display: flex;
+  align-items: center;
+
+  section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      color: rgb(143, 98, 150);
+    }
+
+    h4 {
+      color: rgb(187, 115, 26);
+    }
+
+    nav {
+      width: 12rem;
+
+      ul {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+.you {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.you-left,
+.you-right {
+  padding: 2rem;
+}
+
+.input-1,
+.input-2,
+.input-3,
+.input-4,
+.input-5,
+.input-6 {
+  margin: 1rem 0rem;
 }
 </style>

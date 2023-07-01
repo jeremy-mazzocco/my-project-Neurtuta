@@ -10,10 +10,14 @@ export const store = reactive({
         numberWorkouts: 0,
         caloriesWithWO: 0,
         caloriesCut: 0,
-        calories: 0,
+        caloriesDay: 0,
+        caloriesWeek: 0,
+        leanMass: 0,
+        proteinKilo: 0,
+        fatsKilo: 0,
+        proteinDay: 0,
+        fatsDay: 0,
+        carboDay: 0,
     }
 })
 
-// 10 * weight (kg) + 6.25 * height(cm) - 5 * age(y) + 5 for (man)
-
-// 10 * weight(kg) + 6.25 * height(cm) - 5 * age(y) - 161 for ​(woman)
