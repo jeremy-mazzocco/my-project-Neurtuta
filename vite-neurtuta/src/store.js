@@ -21,6 +21,10 @@ export const store = reactive({
         carboDayCalories: 0,
         proteinDayCalories: 0,
         fatsDayCalories: 0
+    },
+    myFood: {
+        mealCalories: 0,
+        dataAPI: ''
     }
 })
 
