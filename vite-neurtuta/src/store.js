@@ -3,9 +3,9 @@ import { reactive } from "vue";
 export const store = reactive({
     myData: {
         gender: '',
-        height: '',
-        age: '',
-        weight: '',
+        height: 0,
+        age: 0,
+        weight: 0,
         caloriesBMI: 0,
         numberWorkouts: 0,
         caloriesWithWO: 0,

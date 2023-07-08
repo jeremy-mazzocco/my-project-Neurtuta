@@ -1,42 +1,35 @@
 <script lang="ts">
 import {
     Chart as ChartJS,
-    Title,
+    ArcElement,
     Tooltip,
-    Legend,
-    BarElement,
-    CategoryScale,
-    LinearScale
+    Legend
+
 } from 'chart.js';
-import { Bar } from 'vue-chartjs';
+import { Doughnut } from 'vue-chartjs';
 import { store } from "../store";
+import * as chartConfig from '../components/micro_components/ChartConfig.js';
 
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+ChartJS.register(ArcElement, Tooltip, Legend)
 
 export default {
     name: 'AppGraph',
     components: {
-        Bar
+        Doughnut
     },
     data() {
-        return {
-            data: {
-                labels: ['Carbo gr', 'Protein gr', 'Fat gr'],
-                datasets: [{ data: [store.myData.carboDay, store.myData.proteinDay, store.myData.fatsDay] }]
-            },
-            options: {
-                responsive: true
-            },
-            store
-        }
+        return chartConfig
+        store
+
     }
 }
+
 </script>
 <template>
     <section>
         <div>
-            <Bar :data="data" :options="options" />
+            <Doughnut :data="data" :options="options" />
         </div>
     </section>
 </template>
