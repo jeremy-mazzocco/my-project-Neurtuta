@@ -20,7 +20,10 @@ export const store = reactive({
         fatsDay: 0,
         carboDayCalories: 0,
         proteinDayCalories: 0,
-        fatsDayCalories: 0
+        fatsDayCalories: 0,
+        carboDayPercentage: 0,
+        proteinDayPercentage: 0,
+        fatsDayPercentage: 0,
     },
     myFood: {
         mealCalories: 0,

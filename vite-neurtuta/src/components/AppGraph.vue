@@ -17,22 +17,44 @@ export default {
         Doughnut
     },
     computed: {
-        chartData() {
+
+        // chart in calories
+        chartDataCal() {
             return {
                 labels: ['Carbo', 'Protein', 'Fats'],
                 datasets: [
                     {
-                        data: [store.myData.carboDayCalories, store.myData.proteinDayCalories, store.myData.fatsDayCalories]
+                        backgroundColor: ['#41B883', '#c9c948', '#6272ef'],
+                        data: [store.myData.carboDayPercentage, store.myData.proteinDayPercentage, store.myData.fatsDayPercentage]
                     }
                 ]
             }
         },
-        chartOptions() {
+        chartOptionsCal() {
             return {
                 responsive: true,
                 maintainAspectRatio: false
             }
-        }
+        },
+
+        // chart in grams
+        // chartDataGrams() {
+        //     return {
+        //         labels: ['Carbo', 'Protein', 'Fats'],
+        //         datasets: [
+        //             {
+        //                 backgroundColor: ['#41B883', '#c9c948', '#6272ef'],
+        //                 data: [store.myData.carboDay, store.myData.proteinDay, store.myData.fatsDay]
+        //             }
+        //         ]
+        //     }
+        // },
+        // chartOptionsGrams() {
+        //     return {
+        //         responsive: true,
+        //         maintainAspectRatio: false
+        //     }
+        // }
     },
     data() {
         return {
@@ -44,9 +66,12 @@ export default {
 
 <template>
     <section>
-        <div>
-            <Doughnut :data="chartData" :options="chartOptions" />
+        <div class="chart">
+            <Doughnut :data="chartDataCal" :options="chartOptionsCal" />
         </div>
+        <!-- <div class="chart">
+            <Doughnut :data="chartDataGrams" :options="chartOptionsGrams" />
+        </div> -->
     </section>
 </template>
 

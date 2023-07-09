@@ -44,6 +44,11 @@ export default {
             store.myData.carboDayCalories = Math.floor(store.myData.caloriesDay - (store.myData.proteinDayCalories + store.myData.fatsDayCalories));
             store.myData.carboDay = Math.floor(store.myData.carboDayCalories / 4);
 
+            // Calculate percentage fro graph
+            store.myData.carboDayPercentage = Math.floor(store.myData.carboDayCalories / store.myData.caloriesDay * 100);
+            store.myData.proteinDayPercentage = Math.floor(store.myData.proteinDayCalories / store.myData.caloriesDay * 100);
+            store.myData.fatsDayPercentage = Math.floor(store.myData.fatsDayCalories / store.myData.caloriesDay * 100);
+
         },
     },
 }
