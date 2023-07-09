@@ -8,8 +8,6 @@ import {
 } from 'chart.js';
 import { Doughnut } from 'vue-chartjs';
 import { store } from "../store";
-import * as chartConfig from '../components/micro_components/ChartConfig.js';
-
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
@@ -18,18 +16,36 @@ export default {
     components: {
         Doughnut
     },
+    computed: {
+        chartData() {
+            return {
+                labels: ['Carbo', 'Protein', 'Fats'],
+                datasets: [
+                    {
+                        data: [store.myData.carboDayCalories, store.myData.proteinDayCalories, store.myData.fatsDayCalories]
+                    }
+                ]
+            }
+        },
+        chartOptions() {
+            return {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        }
+    },
     data() {
-        return chartConfig
-        store
-
+        return {
+            store
+        }
     }
 }
-
 </script>
+
 <template>
     <section>
         <div>
-            <Doughnut :data="data" :options="options" />
+            <Doughnut :data="chartData" :options="chartOptions" />
         </div>
     </section>
 </template>

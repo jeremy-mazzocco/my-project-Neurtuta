@@ -45,7 +45,7 @@ export default {
             store.myData.carboDay = Math.floor(store.myData.carboDayCalories / 4);
 
         },
-    }
+    },
 }
 
 </script>

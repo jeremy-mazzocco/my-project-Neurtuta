@@ -22,7 +22,6 @@ export default {
     }
   },
   methods: {
-
     debugbutton() {
 
       // axios.get('https://api.edamam.com/search?q=chicken&app_id=663fa592&app_key=dd7f0a5ba437a993dcd7b477a059209f&from=0&to=3&calories=591-722&health=alcohol-free')
